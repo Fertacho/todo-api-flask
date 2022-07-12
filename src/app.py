@@ -3,7 +3,7 @@ from flask import request
 
 app = Flask(__name__)
 
-todos = [ { "label": "Sample", "done": True }]
+todos = [ { "label": "My first task", "done": False } ]
 
 @app.route('/todos', methods=['GET'])
 def hello_world():
@@ -12,10 +12,9 @@ def hello_world():
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
-    request_body = request.json
-    json_text = jsonify(request_body)
+    request_body = request.data
     print("Incoming request with the following body", request_body)
-    return json_text
+    return 'Response for the POST'
 
 
 if __name__ == '__main__':
