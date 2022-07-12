@@ -15,7 +15,7 @@ def add_new_todo():
     request_body = request.data
     json_text = jsonify(todos)
     print("Incoming request with the following body", request_body)
-    return request_body
+    return json_text
 
 
 if __name__ == '__main__':
