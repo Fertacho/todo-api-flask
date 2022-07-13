@@ -12,9 +12,10 @@ def hello_world():
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
+    todo = { "done": True, "label": "Sam67ple Todo 37434" }
     request_body = request.data
-    json_text = jsonify(todos)
-    print("Incoming request with the following body", request_body)
+    json_text = jsonify(todos,todo)
+    print(request_body)
     return json_text
 
 
