@@ -13,7 +13,6 @@ def hello_world():
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
-    dict = { "label": "My first task", "done": False }
     request_body = request.data
     json_text = jsonify(todo)
     print(request_body)
@@ -21,9 +20,9 @@ def add_new_todo():
 
 @app.route('/todos/<int:position>', methods=['DELETE'])
 def delete_todo(position):
-    
+    json_text = jsonify(todo.pop(position))
     print("This is the position to delete: ",position)
-    return 'something'
+    return json_text
 
 
 
