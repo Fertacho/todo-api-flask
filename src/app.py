@@ -1,10 +1,11 @@
 from flask import Flask, jsonify
 from flask import request
+from flask import json
 
 app = Flask(__name__)
 
 todos = [ { "label": "My first task", "done": False } ]
-todo  = [ { "label": "Sam67ple Todo 37434",  "done": True}, { "label": "My first task", "done": False }]
+todo  = [ { "label": "Sam67ple Todo 37434",  "done": True}]
 
 @app.route('/todos', methods=['GET'])
 def hello_world():
@@ -13,14 +14,15 @@ def hello_world():
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
-    request_body = request.data
-    json_text = jsonify(todo)
-    print(request_body)
+    request_body =json.loads(request.data)
+    todos.append(request_body)
+    print(todos)
+    json_text = jsonify(todos)
     return json_text
 
 @app.route('/todos/<int:position>', methods=['DELETE'])
 def delete_todo(position):
-    json_text = jsonify(todo.pop(position))
+    json_text = jsonify(todos.pop(position))
     print("This is the position to delete: ",position)
     return json_text
 
